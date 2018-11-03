@@ -1,0 +1,63 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "32512"
+      ]
+     },
+     "execution_count": 2,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "import os\n",
+    "\n",
+    "# create the chains (these only need to happen once)\n",
+    "os.system('/sbin/iptables -N ACCOUNTING_INCOMING')\n",
+    "os.system('/sbin/iptables -N ACCOUNTING_OUTGOING')\n",
+    "os.system('/sbin/iptables -N UPNP')\n",
+    "# send all FORWARD packets to accounting\n",
+    "os.system('/sbin/iptables -I FORWARD -j ACCOUNTING_INCOMING')\n",
+    "os.system('/sbin/iptables -I FORWARD -j ACCOUNTING_OUTGOING')\n",
+    "os.system('/sbin/iptables -A FORWARD -j UPNP')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 2",
+   "language": "python",
+   "name": "python2"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 2
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython2",
+   "version": "2.7.13"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
